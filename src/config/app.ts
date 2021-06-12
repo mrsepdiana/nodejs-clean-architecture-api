@@ -1,6 +1,7 @@
 // Application port
 const appConfig = {
-  appPort: 8080
+  appPort: 8080,
+  debug: true
 }
 
 export default appConfig;
