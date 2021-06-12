@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import * as core from 'express-serve-static-core';
 import { Api as routers } from './http/routers'
+import dbConnection from '../database/mysql';
 
 class Server {
   app: core.Express
@@ -39,7 +40,17 @@ class Server {
   /**
    * Server configurations
    */
-  configuration() {
+  async configuration() {
+    
+    // Database Connection
+    const mysqlDriver = dbConnection;
+    try {
+      await mysqlDriver.authenticate();
+      console.log('Connection has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    }
+        
     this.app.disable('x-powered-by');
     // Enable CORS in all requests
     this.app.use(cors());
