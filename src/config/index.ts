@@ -3,7 +3,9 @@ import databaseConfig from './database';
 
 const config = {
   ...appConfig,
-  ...databaseConfig
+  dbConfig: {
+    ...databaseConfig
+  }
 }
 
 export default config;
