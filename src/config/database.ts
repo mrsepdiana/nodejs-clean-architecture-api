@@ -15,7 +15,7 @@ const databaseConfig: DatabaseConfigType = {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
-  database: "teemsly"
+  database: "test_nodejs"
 }
 
 export default databaseConfig
