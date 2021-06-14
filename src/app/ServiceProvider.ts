@@ -17,7 +17,8 @@ ServiceProvider.register({
 })
 
 ServiceProvider.loadModules([
-  '../utilities/**/*.ts'
+  './utilities/**/*.ts',
+  '../domain/**/*.ts'
 ], {
     formatName: 'camelCase', 
     resolverOptions: {
