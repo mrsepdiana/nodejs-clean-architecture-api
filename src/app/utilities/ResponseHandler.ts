@@ -12,7 +12,7 @@ type ResponseHandlerType = {
  * @param response response
  * @returns success or error handler
  */
-const responseHandler = (request: any, response: any) => {
+const responseHandler = (_: any, response: any) => {
 
   /**
    * Success Handler
@@ -20,7 +20,7 @@ const responseHandler = (request: any, response: any) => {
    * @returns success response
    */
   const success = ({data, message, status }: ResponseHandlerType) => {
-    return response.json({status: 200, message, data})
+    return response.status(status).json({status: status, message, data})
   }
 
    /**
@@ -29,7 +29,7 @@ const responseHandler = (request: any, response: any) => {
    * @returns Error response
    */
   const error = ({data, message, status, errors }: ResponseHandlerType) => {
-    return response.json({status: status, message, errors, data})
+    return response.status(status).json({status: status, message, errors, data})
   }
 
   return { success, error }
