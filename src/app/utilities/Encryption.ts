@@ -1,14 +1,16 @@
 import bcrypt from 'bcrypt'
 
-class Encryption {
-  compare(data: string, dataEncode: string) {
+const Encryption = () => {
+  const compare = (data: string, dataEncode: string) => {
     return bcrypt.compareSync(data, dataEncode)
   }
 
-  encrypt(data: string | Buffer) {
-    const salt = bcrypt.genSaltSync(12);
+  const encrypt = (data: string | Buffer) => {
+    const salt = bcrypt.genSaltSync();
     return bcrypt.hashSync(data, salt);
   }
+
+  return {compare, encrypt}
 }
 
 export default Encryption
