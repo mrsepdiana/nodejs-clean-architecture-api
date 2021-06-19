@@ -13,7 +13,7 @@ import { CreateOptions } from "sequelize";
      * @param options create options
      * @returns create entity
      */
-    async create(entity: T, options?: CreateOptions) {
+    async create(entity: object, options?: CreateOptions) {
       return await this.domain.create(entity, options);
     }
 
@@ -53,14 +53,14 @@ import { CreateOptions } from "sequelize";
      * @param value value of the field 
      * @returns record of the data
      */
-    async _findByField(field: string, value: any) {
+    async _findByField(field: string, value: any, options?: object) {
       let where = {
         where: {
           [field] : value
         }
       }
       
-      return this.domain.findOne({...where})
+      return this.domain.findOne({...where, ...options})
     }
 
   }

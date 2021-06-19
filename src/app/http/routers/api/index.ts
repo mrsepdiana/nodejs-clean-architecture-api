@@ -1,7 +1,9 @@
 import { Router } from 'express'
 import morgan from 'morgan'
-import UserEndpoint from './UserEndpoint';
 import compression from 'compression';
+import bodyParser from 'body-parser';
+
+import AuthEndpoint from './AuthEndpoint';
 
 const Api = () => {
   // initialize router
@@ -15,7 +17,10 @@ const Api = () => {
   // Log the endpoints being accessed
   router.use(morgan('dev'));
 
-  router.use(prefixUrl, UserEndpoint())
+  // Route middleware to parse body json of the request
+  router.use(bodyParser.json())
+
+  router.use(prefixUrl, [AuthEndpoint()]);
 
   return router;
 }
