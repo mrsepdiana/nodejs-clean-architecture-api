@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import * as core from 'express-serve-static-core';
 import { Api as routers } from './http/routers'
-import dbConnection from '../database/mysql';
+import dbConnection from '../database';
 
 class Server {
   app: core.Express
@@ -22,7 +22,14 @@ class Server {
    *  
    * @returns Promise
    */
-  start() {
+  async start() {
+
+    // Check for db connection
+    try {
+      await dbConnection.authenticate()
+    } catch (e) {
+      console.error("Unable to connect to database", e);
+    }
 
     // Enable app configuration
     this.configuration();
