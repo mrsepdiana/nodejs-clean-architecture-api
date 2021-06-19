@@ -11,11 +11,11 @@ type DatabaseConfigType = {
 
 const databaseConfig: DatabaseConfigType = {
   username: "root",
-  password: "",
+  password: "root",
   host: "localhost",
   port: 3306,
   dialect: "mysql",
-  database: "test_nodejs"
+  database: "nodejs_test"
 }
 
 export default databaseConfig
